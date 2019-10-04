@@ -17,12 +17,13 @@ namespace tic_tac_toe
             gameboard[1, 1] = 'O';
             gameboard[1, 2] = 'X';
 
-
             Print(gameboard);
 
         }
         static void Print(char[,] board)
         {
+            //Rensa konsollen
+            Console.Clear();
             //Skriver ut brädet
             for (int x = 0; x < board.GetLength(0); x++)
             {
