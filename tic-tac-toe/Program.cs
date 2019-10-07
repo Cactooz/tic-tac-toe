@@ -21,10 +21,12 @@ namespace tic_tac_toe
             while (startStatus != "play" || startStatus != "tutorial") {
               string start = Console.ReadLine();
               startStatus = start.ToLower();
-              if (startStatus == "play")
-                  Game(menuBoard);
-              else if (startStatus == "tutorial")
-                  Tutorial(menuBoard);
+                if (startStatus == "play")
+                    Game(menuBoard);
+                else if (startStatus == "tutorial")
+                    Tutorial(menuBoard);
+                else if (startStatus == "exit")
+                    Environment.Exit(0);
             }
         }
 
@@ -45,8 +47,8 @@ namespace tic_tac_toe
               Console.Write("Place: ");
               int location = int.Parse(Console.ReadLine());
               if (location < 10) {
-                  if (gameBoard[location-1] != 'O' || gameBoard[location-1] != 'X') {
-                      gameBoard[(location-1)] = player;
+                  if (gameBoard[location-1] != 'O' && gameBoard[location-1] != 'X') {
+                      gameBoard[location-1] = player;
                       Print(gameBoard);
                   }
                   else {
@@ -60,6 +62,14 @@ namespace tic_tac_toe
                   System.Threading.Thread.Sleep(3000); //Wait for 3 seconds
                   turn--;
               }
+                if (turn >= 5) {
+                  CheckWin(gameBoard);
+                      if (CheckWin(gameBoard) == 1) {
+                          Console.WriteLine($"Player {player} has won the game!");
+                          System.Threading.Thread.Sleep(5000);
+                          Menu(gameBoard);
+                      }
+                }
             }
             Console.WriteLine("It's a DRAW...");
             System.Threading.Thread.Sleep(3000);
@@ -92,15 +102,26 @@ namespace tic_tac_toe
         //Prints the gameboard
         static void Print(char[] printBoard)
         {
-            //Rensa konsollen
+            //Clear the console
             Console.Clear();
-            //Skriver ut brädet
+            //Write out the gameboard
             Console.WriteLine("Tic Tac Toe\n");
             Console.WriteLine($"{printBoard[0]} | {printBoard[1]} | {printBoard[2]}");
             Console.WriteLine("—————————");
             Console.WriteLine($"{printBoard[3]} | {printBoard[4]} | {printBoard[5]}");
             Console.WriteLine("—————————");
             Console.WriteLine($"{printBoard[6]} | {printBoard[7]} | {printBoard[8]}\n");
+        }
+
+        //Check if someone has won
+        static int CheckWin(char[] resultBoard)
+        {
+            if (resultBoard[0] == resultBoard[1] == resultBoard[2])
+            {
+                return 1;
+            }
+            else
+                return 0;
         }
     }
 }
