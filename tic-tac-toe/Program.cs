@@ -8,10 +8,6 @@ namespace tic_tac_toe
         {
             char[] mainBoard = { '█', '█', '█', '█', '█', '█', '█', '█', '█' };
 
-            mainBoard[0] = 'X';
-            mainBoard[1] = 'O';
-            mainBoard[2] = 'X';
-
             Menu(mainBoard);
         }
 
@@ -39,7 +35,17 @@ namespace tic_tac_toe
             int turn = 0;
             Print(gameBoard);
             Console.WriteLine($"Turn: {turn+1}");
-            Console.WriteLine($"It's {player}'s turn");
+            Console.WriteLine($"It's {player}'s turn\n");
+            Console.Write("Place: ");
+            int location = int.Parse(Console.ReadLine());
+            if (location < 10 && location != gameBoard[location]) {
+                gameBoard[location-1] = player;
+                Print(gameBoard);
+            }
+            else if (location > 9)
+                Console.WriteLine("You can only choose between 1-9!");
+            else
+                Console.WriteLine("This place is already taken.");
         }
 
         //Tutorial
