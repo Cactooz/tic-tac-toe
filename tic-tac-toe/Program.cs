@@ -45,7 +45,7 @@ namespace tic_tac_toe
               Console.Write("Place: ");
               int location = int.Parse(Console.ReadLine());
               if (location < 10) {
-                  if (location != gameBoard[location]) {
+                  if (gameBoard[location-1] != 'O' || gameBoard[location-1] != 'X') {
                       gameBoard[(location-1)] = player;
                       Print(gameBoard);
                   }
@@ -61,6 +61,9 @@ namespace tic_tac_toe
                   turn--;
               }
             }
+            Console.WriteLine("It's a DRAW...");
+            System.Threading.Thread.Sleep(3000);
+            Menu(gameBoard);
         }
 
         //Tutorial
