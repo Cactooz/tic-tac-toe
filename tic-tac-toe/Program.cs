@@ -14,6 +14,7 @@ namespace tic_tac_toe
         //Main menu
         static void Menu(char[] menuBoard)
         {
+            Reset(menuBoard);
             Console.Clear();
             Console.WriteLine("Tic Tac Toe\n");
             Console.WriteLine("To start playing type PLAY\nTo see the tutorial type TUTORIAL");
@@ -35,6 +36,7 @@ namespace tic_tac_toe
         {
             char player = 'X';
             int turn = 0;
+            int error = 0;
             while (turn < 9) {
                 if (turn % 2 == 0)
                     player = 'X';
@@ -63,7 +65,7 @@ namespace tic_tac_toe
                     turn--;
                 }
                 if (turn >= 5) {
-                    CheckWin(gameBoard);
+                    CheckWin(gameBoard, ref error);
                     if (CheckWin(gameBoard) == 1) {
                         Console.WriteLine($"Player {player} has won the game!");
                         System.Threading.Thread.Sleep(5000); //Wait for 5 seconds
@@ -114,14 +116,42 @@ namespace tic_tac_toe
         }
 
         //Check if someone has won
-        static int CheckWin(char[] resultBoard)
+        static int CheckWin(char[] resultBoard, ref int err)
         {
-            if (resultBoard[0] == resultBoard[1] == resultBoard[2])
-            {
+            //Check for top horizontal row
+            if (resultBoard[0] == resultBoard[1] && resultBoard[1] == resultBoard[2] && resultBoard[0] == resultBoard[2])
+                err = 1;
                 return 1;
-            }
+            //Check for middle horizontal row
+            else if (resultBoard[3] == resultBoard[4] && resultBoard[4] == resultBoard[5] && resultBoard[3] == resultBoard[5])
+                return 1;
+            //Check for bottom horizontal row
+            else if (resultBoard[6] == resultBoard[7] && resultBoard[7] == resultBoard[8] && resultBoard[6] == resultBoard[8])
+                return 1;
+            //Check for left vertical row
+            else if (resultBoard[0] == resultBoard[3] && resultBoard[3] == resultBoard[6] && resultBoard[0] == resultBoard[6])
+                return 1;
+            //Check for middle vertical row
+            else if (resultBoard[1] == resultBoard[4] && resultBoard[4] == resultBoard[7] && resultBoard[1] == resultBoard[7])
+                return 1;
+            //Check for right vertical row
+            else if (resultBoard[2] == resultBoard[5] && resultBoard[5] == resultBoard[8] && resultBoard[2] == resultBoard[8])
+                return 1;
+            //Check for diagonal top left to bottom right \
+            else if (resultBoard[0] == resultBoard[4] && resultBoard[4] == resultBoard[8] && resultBoard[0] == resultBoard[8])
+                return 1;
+            //Check for diagonal top right to bottom left /
+            else if (resultBoard[2] == resultBoard[4] && resultBoard[4] == resultBoard[6] && resultBoard[2] == resultBoard[6])
+                return 1;
             else
                 return 0;
+        }
+
+        //Reset board to normal characters
+        static void Reset(char[] resetBoard)
+        {
+            for (int i = 0; i<resetBoard.Length; i++)
+                resetBoard[i] = '█';
         }
     }
 }
