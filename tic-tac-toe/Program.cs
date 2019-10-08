@@ -19,14 +19,14 @@ namespace tic_tac_toe
             Console.WriteLine("To start playing type PLAY\nTo see the tutorial type TUTORIAL");
             string startStatus = "";
             while (startStatus != "play" || startStatus != "tutorial") {
-              string start = Console.ReadLine();
-              startStatus = start.ToLower();
-                if (startStatus == "play")
-                    Game(menuBoard);
-                else if (startStatus == "tutorial")
-                    Tutorial(menuBoard);
-                else if (startStatus == "exit")
-                    Environment.Exit(0);
+                string start = Console.ReadLine();
+                startStatus = start.ToLower();
+                    if (startStatus == "play")
+                        Game(menuBoard);
+                    else if (startStatus == "tutorial")
+                        Tutorial(menuBoard);
+                    else if (startStatus == "exit")
+                        Environment.Exit(0);
             }
         }
 
@@ -36,43 +36,43 @@ namespace tic_tac_toe
             char player = 'X';
             int turn = 0;
             while (turn < 9) {
-              if (turn % 2 == 0)
-                  player = 'X';
-              else
-                  player = 'O';
-              turn++;
-              Print(gameBoard);
-              Console.WriteLine($"Turn: {turn}");
-              Console.WriteLine($"It's {player}'s turn\n");
-              Console.Write("Place: ");
-              int location = int.Parse(Console.ReadLine());
-              if (location < 10) {
-                  if (gameBoard[location-1] != 'O' && gameBoard[location-1] != 'X') {
-                      gameBoard[location-1] = player;
-                      Print(gameBoard);
-                  }
-                  else {
-                      Console.WriteLine("This place is already taken.");
-                      System.Threading.Thread.Sleep(3000); //Wait for 3 seconds
-                      turn--;
-                  }
-              }
-              else {
-                  Console.WriteLine("You can only choose between 1-9!");
-                  System.Threading.Thread.Sleep(3000); //Wait for 3 seconds
-                  turn--;
-              }
+                if (turn % 2 == 0)
+                    player = 'X';
+                else
+                    player = 'O';
+                turn++;
+                Print(gameBoard);
+                Console.WriteLine($"Turn: {turn}");
+                Console.WriteLine($"It's {player}'s turn\n");
+                Console.Write("Place: ");
+                int location = int.Parse(Console.ReadLine());
+                if (location < 10) {
+                    if (gameBoard[location-1] != 'O' && gameBoard[location-1] != 'X') {
+                        gameBoard[location-1] = player;
+                        Print(gameBoard);
+                    }
+                    else {
+                        Console.WriteLine("This place is already taken.");
+                        System.Threading.Thread.Sleep(3000); //Wait for 3 seconds
+                        turn--;
+                    }
+                }
+                else {
+                    Console.WriteLine("You can only choose between 1-9!");
+                    System.Threading.Thread.Sleep(3000); //Wait for 3 seconds
+                    turn--;
+                }
                 if (turn >= 5) {
-                  CheckWin(gameBoard);
-                      if (CheckWin(gameBoard) == 1) {
-                          Console.WriteLine($"Player {player} has won the game!");
-                          System.Threading.Thread.Sleep(5000);
-                          Menu(gameBoard);
-                      }
+                    CheckWin(gameBoard);
+                    if (CheckWin(gameBoard) == 1) {
+                        Console.WriteLine($"Player {player} has won the game!");
+                        System.Threading.Thread.Sleep(5000); //Wait for 5 seconds
+                        Menu(gameBoard);
+                    }
                 }
             }
             Console.WriteLine("It's a DRAW...");
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(3000); //Wait for 3 seconds
             Menu(gameBoard);
         }
 
@@ -92,10 +92,10 @@ namespace tic_tac_toe
             Console.WriteLine("Done reading? Type DONE to get back to the main menu!");
             string done = "";
             while (done != "done") {
-              string answer = Console.ReadLine();
-              done = answer.ToLower();
-              if (done == "done")
-                  Menu(tutorialBoard);
+                string answer = Console.ReadLine();
+                done = answer.ToLower();
+                if (done == "done")
+                    Menu(tutorialBoard);
             }
         }
 
