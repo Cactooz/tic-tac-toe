@@ -66,10 +66,13 @@ namespace tic_tac_toe
                 if (turn >= 5) {
                     CheckWin(gameBoard);
                     if (CheckWin(gameBoard) > 0) {
-                        Console.WriteLine($"Player {player} has won the game!");
+                        Console.WriteLine($"Player {player} has won the game!\n");
                         Console.WriteLine(CheckWin(gameBoard));
-                        System.Threading.Thread.Sleep(5000); //Wait for 5 seconds
-                        Menu(gameBoard);
+                        Console.WriteLine("Write MENU to get back to main menu.");
+                        string answer = Console.ReadLine();
+                        string menu = answer.ToLower();
+                        if (menu == "menu")
+                            Menu(gameBoard);
                     }
                 }
             }
