@@ -128,8 +128,8 @@ namespace tic_tac_toe
             else if (resultBoard[3] == resultBoard[4] && resultBoard[4] == resultBoard[5] && resultBoard[3] == resultBoard[5])
                 return 2;
             //Check for bottom horizontal row
-            else if (resultBoard[6] == resultBoard[7] && resultBoard[7] == resultBoard[8] && resultBoard[6] == resultBoard[8])
-                return 3;
+            /*else if (resultBoard[6] == resultBoard[7] && resultBoard[7] == resultBoard[8] && resultBoard[6] == resultBoard[8])
+                return 3;*/
             //Check for left vertical row
             else if (resultBoard[0] == resultBoard[3] && resultBoard[3] == resultBoard[6] && resultBoard[0] == resultBoard[6])
                 return 4;
@@ -137,8 +137,8 @@ namespace tic_tac_toe
             else if (resultBoard[1] == resultBoard[4] && resultBoard[4] == resultBoard[7] && resultBoard[1] == resultBoard[7])
                 return 5;
             //Check for right vertical row
-            else if (resultBoard[2] == resultBoard[5] && resultBoard[5] == resultBoard[8] && resultBoard[2] == resultBoard[8])
-                return 6;
+            /*else if (resultBoard[2] == resultBoard[5] && resultBoard[5] == resultBoard[8] && resultBoard[2] == resultBoard[8])
+                return 6;*/
             //Check for diagonal top left to bottom right \
             else if (resultBoard[0] == resultBoard[4] && resultBoard[4] == resultBoard[8] && resultBoard[0] == resultBoard[8])
                 return 7;
