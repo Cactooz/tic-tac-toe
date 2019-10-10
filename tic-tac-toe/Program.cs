@@ -67,7 +67,6 @@ namespace tic_tac_toe
                     CheckWin(gameBoard);
                     if (CheckWin(gameBoard) > 0) {
                         Console.WriteLine($"Player {player} has won the game!\n");
-                        Console.WriteLine(CheckWin(gameBoard));
                         Console.WriteLine("Write MENU to get back to main menu.");
                         string answer = Console.ReadLine();
                         string menu = answer.ToLower();
@@ -122,28 +121,28 @@ namespace tic_tac_toe
         static int CheckWin(char[] resultBoard)
         {
             //Check for top horizontal row
-            if (resultBoard[0] == resultBoard[1] && resultBoard[1] == resultBoard[2] && resultBoard[0] == resultBoard[2])
+            if (resultBoard[0] != '█' && resultBoard[0] == resultBoard[1] && resultBoard[1] == resultBoard[2] && resultBoard[0] == resultBoard[2])
                 return 1;
             //Check for middle horizontal row
-            else if (resultBoard[3] == resultBoard[4] && resultBoard[4] == resultBoard[5] && resultBoard[3] == resultBoard[5])
+            else if (resultBoard[3] != '█' && resultBoard[3] == resultBoard[4] && resultBoard[4] == resultBoard[5] && resultBoard[3] == resultBoard[5])
                 return 2;
             //Check for bottom horizontal row
-            /*else if (resultBoard[6] == resultBoard[7] && resultBoard[7] == resultBoard[8] && resultBoard[6] == resultBoard[8])
-                return 3;*/
+            else if (resultBoard[6] != '█' && resultBoard[6] == resultBoard[7] && resultBoard[7] == resultBoard[8] && resultBoard[6] == resultBoard[8])
+                return 3;
             //Check for left vertical row
-            else if (resultBoard[0] == resultBoard[3] && resultBoard[3] == resultBoard[6] && resultBoard[0] == resultBoard[6])
+            else if (resultBoard[0] != '█' && resultBoard[0] == resultBoard[3] && resultBoard[3] == resultBoard[6] && resultBoard[0] == resultBoard[6])
                 return 4;
             //Check for middle vertical row
-            else if (resultBoard[1] == resultBoard[4] && resultBoard[4] == resultBoard[7] && resultBoard[1] == resultBoard[7])
+            else if (resultBoard[1] != '█' && resultBoard[1] == resultBoard[4] && resultBoard[4] == resultBoard[7] && resultBoard[1] == resultBoard[7])
                 return 5;
             //Check for right vertical row
-            /*else if (resultBoard[2] == resultBoard[5] && resultBoard[5] == resultBoard[8] && resultBoard[2] == resultBoard[8])
-                return 6;*/
+            else if (resultBoard[2] != '█' && resultBoard[2] == resultBoard[5] && resultBoard[5] == resultBoard[8] && resultBoard[2] == resultBoard[8])
+                return 6;
             //Check for diagonal top left to bottom right \
-            else if (resultBoard[0] == resultBoard[4] && resultBoard[4] == resultBoard[8] && resultBoard[0] == resultBoard[8])
+            else if (resultBoard[0] != '█' && resultBoard[0] == resultBoard[4] && resultBoard[4] == resultBoard[8] && resultBoard[0] == resultBoard[8])
                 return 7;
             //Check for diagonal top right to bottom left /
-            else if (resultBoard[2] == resultBoard[4] && resultBoard[4] == resultBoard[6] && resultBoard[2] == resultBoard[6])
+            else if (resultBoard[2] != '█' && resultBoard[2] == resultBoard[4] && resultBoard[4] == resultBoard[6] && resultBoard[2] == resultBoard[6])
                 return 8;
             else
                 return 0;
