@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace tic_tac_toe
 {
@@ -19,15 +19,16 @@ namespace tic_tac_toe
             Console.WriteLine("Tic Tac Toe\n");
             Console.WriteLine("To start playing type PLAY\nTo see the tutorial type TUTORIAL");
             string startStatus = "";
-            while (startStatus != "play" || startStatus != "tutorial") {
+            while (startStatus != "play" || startStatus != "tutorial")
+            {
                 string start = Console.ReadLine();
                 startStatus = start.ToLower();
-                    if (startStatus == "play")
-                        Game(menuBoard);
-                    else if (startStatus == "tutorial")
-                        Tutorial(menuBoard);
-                    else if (startStatus == "exit")
-                        Environment.Exit(0);
+                if (startStatus == "play")
+                    Game(menuBoard);
+                else if (startStatus == "tutorial")
+                    Tutorial(menuBoard);
+                else if (startStatus == "exit")
+                    Environment.Exit(0);
             }
         }
 
@@ -36,7 +37,8 @@ namespace tic_tac_toe
         {
             char player = 'X';
             int turn = 0;
-            while (turn < 9) {
+            while (turn < 9)
+            {
                 if (turn % 2 == 0)
                     player = 'X';
                 else
@@ -47,30 +49,36 @@ namespace tic_tac_toe
                 Console.WriteLine($"It's {player}'s turn\n");
                 Console.Write("Place: ");
                 int location = int.Parse(Console.ReadLine());
-                if (location < 10) {
-                    if (gameBoard[location-1] != 'O' && gameBoard[location-1] != 'X') {
-                        gameBoard[location-1] = player;
+                if (location < 10)
+                {
+                    if (gameBoard[location - 1] != 'O' && gameBoard[location - 1] != 'X')
+                    {
+                        gameBoard[location - 1] = player;
                         Print(gameBoard);
                     }
-                    else {
+                    else
+                    {
                         Console.WriteLine("This place is already taken.");
                         System.Threading.Thread.Sleep(3000); //Wait for 3 seconds
                         turn--;
                     }
                 }
-                else {
+                else
+                {
                     Console.WriteLine("You can only choose between 1-9!");
                     System.Threading.Thread.Sleep(3000); //Wait for 3 seconds
                     turn--;
                 }
-                if (turn >= 5) {
+                if (turn >= 5)
+                {
                     CheckWin(gameBoard);
-                    if (CheckWin(gameBoard) > 0) {
+                    if (CheckWin(gameBoard) > 0)
+                    {
                         Console.WriteLine($"Player {player} has won the game!\n");
                         Console.WriteLine("Write MENU to get back to main menu.");
                         string answer = Console.ReadLine();
-                        string menu = answer.ToLower();
-                        if (menu == "menu")
+                        string endAnswer = answer.ToLower();
+                        if (endAnswer == "menu")
                             Menu(gameBoard);
                     }
                 }
@@ -92,10 +100,12 @@ namespace tic_tac_toe
             Console.WriteLine("4 | 5 | 6");
             Console.WriteLine("—————————");
             Console.WriteLine("7 | 8 | 9\n");
-            Console.WriteLine("When playing type the number where you want to place your X or O.\n");
+            Console.WriteLine("When playing type the number where you want to place your X or O.");
+            Console.WriteLine("You win by having a line of 3 characters, either vertical, horizontal or diagonal.\n");
             Console.WriteLine("Done reading? Type DONE to get back to the main menu!");
             string done = "";
-            while (done != "done") {
+            while (done != "done")
+            {
                 string answer = Console.ReadLine();
                 done = answer.ToLower();
                 if (done == "done")
@@ -151,7 +161,7 @@ namespace tic_tac_toe
         //Reset board to normal characters
         static void Reset(char[] resetBoard)
         {
-            for (int i = 0; i<resetBoard.Length; i++)
+            for (int i = 0; i < resetBoard.Length; i++)
                 resetBoard[i] = '█';
         }
     }
